@@ -17,7 +17,7 @@ module.exports = function(passport){
         .then(user => {
           if (user) return done(null, user);
           const newUser = new FbUser({
-            FacebookID: profile._json.id,
+            facebookID: profile._json.id,
             name: profile._json.name,
             email: profile._json.email,
             accessToken: accessToken
