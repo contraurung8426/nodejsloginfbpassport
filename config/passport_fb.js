@@ -8,7 +8,7 @@ module.exports = function(passport){
     new passportfb({
       clientID: "178464433586069",
       clientSecret: "062cd4c72ccbd545e59f106dd76741a9",
-      callbackURL: "http://localhost:3000/login_fb/cb"
+      callbackURL: "https://passportloginfb.herokuapp.com/users/login_fb/cb"
     },
     (accessToken, refreshToken, profile, done) => {
       console.log(profile);
