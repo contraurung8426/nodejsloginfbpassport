@@ -13,19 +13,35 @@ module.exports = function(passport){
     },
     (accessToken, refreshToken, profile, done) => {
       console.log(profile);
-      FbUser.findOne({FacebookID: profile._json.id}, (err, user) => {
-        if (err) return done(err);
-        if (user) return done(null, user);
-        const newUser = new FbUser({
-          FacebookID: profile._json.id,
-          name: profile._json.name,
-          email: profile._json.email,
-          accessToken: accessToken
+      // FbUser.findOne({FacebookID: profile._json.id}, (err, user) => {
+      //   if (err) return done(err);
+      //   if (user) return done(null, user);
+      //   const newUser = new FbUser({
+      //     FacebookID: profile._json.id,
+      //     name: profile._json.name,
+      //     email: profile._json.email,
+      //     accessToken: accessToken
+      //   })
+      //   newUser.save((err) => {
+      //     return done(null, newUser);
+      //   });
+      // })
+      FbUser.findOne({ facebookID: profile._json.id})
+        .then(user => {
+          if (user) return done(null, user);
+          const newUser = new FbUser({
+            FacebookID: profile._json.id,
+            name: profile._json.name,
+            email: profile._json.email,
+            accessToken: accessToken
+          })
+          newUser.save()
+            .then(user => {
+              return done(null, newUser);
+            })
+            .catch(err => console.log(err));
         })
-        newUser.save((err) => {
-          return done(null, newUser);
-        });
-      })
+        .catch(err => console.log(err));
     }
     )
   );
