@@ -21,10 +21,10 @@ module.exports = function(passport){
           name: profile._json.name,
           email: profile._json.email,
           accessToken: accessToken
-        });
+        })
         newUser.save((err) => {
           return done(null, newUser);
-        })
+        });
       })
     }
     )
