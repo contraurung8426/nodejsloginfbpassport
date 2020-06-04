@@ -13,6 +13,18 @@ module.exports = function(passport){
     },
     (accessToken, refreshToken, profile, done) => {
       console.log(profile);
+      User.findOne({id: profile._json.id}, (err, user) => {
+        if (err) return done(err);
+        if (user) return done(null, user);
+        const newUser = new User({
+          id: profile._json.id,
+          name: profile._json.name,
+          email: profile._json.email
+        });
+        newUser.save((err) => {
+          return done(null, newUser);
+        })
+      })
     }
     )
   );
