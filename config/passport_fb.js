@@ -20,7 +20,7 @@ module.exports = function(passport){
           FacebookID: profile._json.id,
           name: profile._json.name,
           email: profile._json.email,
-          accessToken
+          accessToken: accessToken
         });
         newUser.save((err) => {
           return done(null, newUser);
