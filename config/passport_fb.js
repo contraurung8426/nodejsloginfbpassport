@@ -17,9 +17,10 @@ module.exports = function(passport){
         if (err) return done(err);
         if (user) return done(null, user);
         const newUser = new FbUser({
-          id: profile._json.id,
+          FacebookID: profile._json.id,
           name: profile._json.name,
-          email: profile._json.email
+          email: profile._json.email,
+          accessToken
         });
         newUser.save((err) => {
           return done(null, newUser);
