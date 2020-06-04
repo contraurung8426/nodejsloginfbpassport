@@ -16,7 +16,7 @@ router.get('/login', (req, res) => {
 
 // Login Fb Page
 router.get('/login_fb', passport.authenticate('facebook', {
-  scope: ['email', 'gender', 'locale', 'displayName']
+  scope: ['email']
 }));
 
 router.get('/login_fb/cb', passport.authenticate('facebook',{
