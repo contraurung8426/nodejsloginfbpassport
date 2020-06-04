@@ -6,8 +6,8 @@ const User = require('../models/User');
 module.exports = function(passport){
   passport.use(
     new passportfb({
-      clientID: "178464433586069",
-      clientSecret: "062cd4c72ccbd545e59f106dd76741a9",
+      clientID: "3642178692465486",
+      clientSecret: "9753b0920031521b44963d8122a285cc",
       callbackURL: "https://passportloginfb.herokuapp.com/users/login_fb/cb"
     },
     (accessToken, refreshToken, profile, done) => {
