@@ -19,10 +19,12 @@ router.get('/login_fb', passport.authenticate('facebook', {
   scope: ['email']
 }));
 
-router.get('/login_fb/cb', passport.authenticate('facebook',{
-  failureRedirect: 'login',
-  successRedirect: '../dashboard'
-}) );
+router.get('/login_fb/cb', (req, res, next) =>{
+  passport.authenticate('facebook',{
+    failureRedirect: 'login',
+    successRedirect: '../dashboard'
+  })(req, res, next);
+});
 
 // Register Page
 router.get('/register', (req, res) => res.render('register'));
