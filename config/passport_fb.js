@@ -9,7 +9,7 @@ module.exports = function(passport){
       clientID: "3642178692465486",
       clientSecret: "9753b0920031521b44963d8122a285cc",
       callbackURL: "https://passportloginfb.herokuapp.com/users/login_fb/cb",
-      profileFields: ['email', 'gender', 'locale']
+      profileFields: ['email', 'gender', 'locale', 'displayName']
     },
     (accessToken, refreshToken, profile, done) => {
       console.log(profile);
