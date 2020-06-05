@@ -32,13 +32,12 @@ module.exports = function(passport){
   );
 
   passport.serializeUser((user, done) => {
-    console.log(user.id);
     done(null, user.id);
   });
   
   passport.deserializeUser((id, done)=> {
     console.log(id);
-    FbUser.findOne({ facebookID: id }, function(err, user) {
+    FbUser.findById(id, function(err, user) {
       done(err, user);
     });
   });

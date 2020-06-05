@@ -7,11 +7,11 @@ const passport = require('passport');
 
 const app = express();
 
-// Passport config
-require('./config/passport')(passport);
-
 // Passport-fb config
 require('./config/passport_fb')(passport);
+
+// Passport config
+require('./config/passport')(passport);
 
 // DB Config
 const db = require('./config/keys').MongoURI;
