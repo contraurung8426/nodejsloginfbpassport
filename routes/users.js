@@ -24,7 +24,7 @@ router.get('/login_fb', passport.authenticate('facebook', {
 router.get('/login_fb/cb', (req, res, next) =>{
   passport.authenticate('facebook',{
     failureRedirect: 'login',
-    successRedirect: 'dashboard'
+    successRedirect: '../../dashboard'
   })(req, res, next);
 });
 
