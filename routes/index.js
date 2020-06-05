@@ -9,8 +9,10 @@ router.get('/', (req, res) => res.render('welcome'));
 // Dashboard Page
 router.get('/dashboard', ensureAuthenticated, (req, res) => {
     res.render('dashboard', {
-        name: req.user.name
+        name: req.user.name,
+        id: req.user.facebookID
     });
+    console.log(typeof(req.user.facebookID));
 });
 
 
