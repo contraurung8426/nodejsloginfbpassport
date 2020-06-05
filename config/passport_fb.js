@@ -37,9 +37,7 @@ module.exports = function(passport){
   });
   
   passport.deserializeUser((id, done)=> {
-    FbUser.findById(id, function(err, user) {
-      console.log("haha/n" + user);
-      if (err) console.log(err);
+    FbUser.findOne({ facebookID: id }, function(err, user) {
       done(err, user);
     });
   });
