@@ -14,6 +14,8 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+router.get('/dashboard', (req, res) => res.redirect('../dashboard'));
+
 // Login Fb Page
 router.get('/login_fb', passport.authenticate('facebook', {
   scope: ['email']
