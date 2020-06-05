@@ -12,7 +12,6 @@ module.exports = function(passport){
       profileFields: ['email', 'gender', 'locale', 'displayName']
     },
     (accessToken, refreshToken, profile, done) => {
-      console.log(profile, profile._json.id);
       FbUser.findOne({ facebookID: profile._json.id})
         .then(user => {
           if (user) return done(null, user);
@@ -41,7 +40,6 @@ module.exports = function(passport){
     console.log(id);
     FbUser.findOne({ facebookID: id }, function(err, user) {
       done(err, user);
-      console.log(user);
     });
   });
 }
