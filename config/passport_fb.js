@@ -39,6 +39,7 @@ module.exports = function(passport){
   passport.deserializeUser((id, done)=> {
     FbUser.findById(id, function(err, user) {
       console.log("haha/n" + user);
+      if (err) console.log(err);
       done(err, user);
     });
   });
