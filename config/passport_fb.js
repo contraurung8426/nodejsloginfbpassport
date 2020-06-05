@@ -1,7 +1,7 @@
 const passportfb = require('passport-facebook').Strategy;
 
-// Load FbUser Model
-const FbUser = require('../models/FbUser');
+// Load User Model
+const User = require('../models/User');
 
 module.exports = function(passport){
   passport.use(
@@ -12,14 +12,14 @@ module.exports = function(passport){
       profileFields: ['email', 'gender', 'locale', 'displayName']
     },
     (accessToken, refreshToken, profile, done) => {
-      FbUser.findOne({ facebookID: profile._json.id})
+      User.findOne({ facebookID: profile._json.id, typelogin: 'facebook'})
         .then(user => {
           if (user) return done(null, user);
-          const newUser = new FbUser({
+          const newUser = new User({
             facebookID: profile._json.id,
             name: profile._json.name,
             email: profile._json.email,
-            accessToken: accessToken
+            typelogin: 'facebook'
           })
           newUser.save()
             .then(user => {
@@ -37,7 +37,7 @@ module.exports = function(passport){
   
   passport.deserializeUser((id, done)=> {
     console.log(id);
-    FbUser.findById(id, function(err, user) {
+    User.findById(id, function(err, user) {
       done(err, user);
     });
   });

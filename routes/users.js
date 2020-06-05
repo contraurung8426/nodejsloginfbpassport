@@ -72,7 +72,8 @@ router.post('/register', (req, res) => {
               const newUser = new User({
                 name,
                 email,
-                password
+                password,
+                typelogin: 'local'
               });
 
               // Hash password

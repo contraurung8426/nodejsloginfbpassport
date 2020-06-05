@@ -6,10 +6,15 @@ const UserSchema = new mongoose.Schema({
         required: true
     },
     email: {
-        type: String,
-        required: true
+        type: String
     },
     password: {
+        type: String
+    },
+    facebookID: {
+        type: String
+    },
+    typelogin: {
         type: String,
         required: true
     },
